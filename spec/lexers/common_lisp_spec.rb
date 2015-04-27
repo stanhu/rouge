@@ -5,6 +5,7 @@ describe Rouge::Lexers::CommonLisp do
 
   describe 'guessing' do
     include Support::Guessing
+    include Support::Lexing
 
     it 'guesses by filename' do
       assert_guess :filename => 'foo.cl'
@@ -14,6 +15,10 @@ describe Rouge::Lexers::CommonLisp do
 
     it 'guesses by mimetype' do
       assert_guess :mimetype => 'text/x-common-lisp'
+    end
+
+    it 'parses parens on another line' do
+      assert_no_errors "\t\t\t\t\t :type \"assem\"))"
     end
   end
 end
